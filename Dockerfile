@@ -1,7 +1,22 @@
 FROM ubuntu:20.04 as ubuntu-base
 
-ENV DEBIAN_FRONTEND=noninteractive \
-    DEBCONF_NONINTERACTIVE_SEEN=true
+#VNC Server Password
+ENV	VNC_PASS="samplepass" \
+#VNC Server Title(w/o spaces)
+	VNC_TITLE="Vubuntu_Desktop" \
+#VNC Resolution(720p is preferable)
+	VNC_RESOLUTION="1280x720" \
+#Local Display Server Port
+	DISPLAY=:0 \
+#NoVNC Port
+	NOVNC_PORT=$PORT \
+#Ngrok Token (Strictly use private token if using the service)
+	NGROK_AUTH_TOKEN="1zLx08cUsPO7WNWQPvAST22ftTK_6Xw1Sowciy7yYdzndhe87" \
+#Locale
+	LANG=en_US.UTF-8 \
+	LANGUAGE=en_US.UTF-8 \
+	LC_ALL=C.UTF-8 \
+	TZ="Asia/Kolkata"
 
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
